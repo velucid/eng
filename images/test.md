@@ -1,0 +1,6 @@
+Process | Description
+:----------:|-------------------
+**API Server**  (kube-apiserver)  | 쿠버네티스 클러스터를 제어 및 관리하는 게이트웨이 역할을 수행하며, 클러스터 컴포넌트, 오브젝트 및 사용자, 외부 컴포넌트가 서로 통신하고 작업을 요청 할 수 있는 RESTful API를 제공한다.  사용자는 kubectl 커맨드 라인 인터페이스를 통해 API Server에 요청 가능하며, SDK(클라이언트 라이브러리)를 통해 Go, Python, Java 언어를 작성하여 직접 접근할 수 있다. 
+**etcd** | 클러스터내의 모든 데이터와 오브젝트를 저장하는 유일한 저장소(distributed key-value store)이며 일관성과 고가용성을 제공한다. 쟁애를 대비하여 주기적인 저장이 필수적이다. 빌트인 스냅샷을 통해 백업이 가능하다. 
+ **Scheduler**  (kube-scheduler) | 새로운 파드(컨테이너  그룹)를 적절한 자원 및 운영 요건의 노드를 찾아 할당하고 실행해주는 역할을 수행한다. <br>**설정 가능한 스케줄 조건**: HW/SW 조건, 리소스 제한/Quota 정책, 보안 정책, 노드 특성(affinity - 위치, 형상, 레이블) 등 
+**Controller Manager** | **kube-controller-manager** - 쿠버네티스 파드와 노드를 관리하는 프로세스들의 집합<br>1. *Node Controller* - 노드 다운을 감시하여 조치 <br>2. *Job Controller* - Job의 task에 따라 파드를 생성하고 수행 완료 <br>3. *Endpoint Controller* - 서비스(네트워크, 로드밸런서)와 파드를 연결 <br>4. *Service Account & Token Controller* - 새로운 네임스페이스에 대한 기본 계정과 API 접근 토큰 생성<br><br>**cloud-controller-manager** - 클라우드 서비스 제공자(CSP)의 서비스 API와 쿠버네티스 클러스터를 연계한다. <br>1. *Node Controller* - 클라우드 서비스 노드의 다운을 감시 <br>2. *Route Contorller* - 클라우드 인프라로의 경로(Route) 구성 <br>3. *Service Controller* - CSP 로드밸런서서비스를 생성, 업데이트 그리고 삭제 
